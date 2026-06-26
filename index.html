@@ -88,6 +88,10 @@ document.addEventListener('DOMContentLoaded', async function() {
       '<div style="align-self:end">\\n            <img src=',
       '<div class="salary-evidence">\\n            <img class="salary-hike-shot" src='
     );
+    template = template.replace(
+      /\s*<!-- 5 -->\s*<article class="slide" data-group="g1" data-prio="P0"[\s\S]*?<\/article>/,
+      ''
+    );
 
     const uuids = Object.keys(manifest);
     setStatus('Unpacking ' + uuids.length + ' assets...');
@@ -154,6 +158,17 @@ document.addEventListener('DOMContentLoaded', async function() {
       JSON.stringify(resourceMap).split('</' + 'script>').join('<\\/' + 'script>') +
       ';</' + 'script>';
     const layoutOverrides = '<style id="navi-layout-overrides">' +
+      'body{font-size:15px;}' +
+      '.sh{width:min(1080px,calc(100% - 88px));}' +
+      'section{padding:72px 0;}' +
+      '.cover{padding:66px 0 58px;}' +
+      '.cover-grid{gap:40px;}' +
+      '.cover h1{font-size:clamp(36px,5vw,66px);}' +
+      '.verdict h2{font-size:clamp(28px,3.8vw,50px);}' +
+      '.sec-head h2{font-size:clamp(26px,3.1vw,40px);}' +
+      '.cover-aside{padding:26px 28px;border-radius:24px;}' +
+      '.info-card,.m-card{padding:24px;}' +
+      '.prob-card,.bug-card,.slide{font-size:.95em;}' +
       'body{background-image:radial-gradient(rgba(94,64,220,.18) 1.25px,transparent 1.25px);background-size:24px 24px;}' +
       '.cover{background-image:radial-gradient(rgba(94,64,220,.18) 1.25px,transparent 1.25px),linear-gradient(160deg,#e4dbff 0%,#ece7ff 42%,#efeaff 100%);background-size:24px 24px,auto;background-position:0 0,0 0;}' +
       '.cover-grid{align-items:center;}' +
@@ -183,9 +198,9 @@ document.addEventListener('DOMContentLoaded', async function() {
       '#problems .prob-block:nth-of-type(2) .prob-inner>div:last-child{align-self:center!important;margin-top:0;}' +
       '#problems .prob-block:nth-of-type(2) .prob-inner>div:last-child>img{width:100%!important;height:88px!important;max-height:none!important;object-fit:cover!important;object-position:center 2%!important;margin-bottom:12px!important;border-radius:10px;display:block;}' +
       '#problems .prob-block:nth-of-type(2) .moat-vs{margin-top:52px;}' +
-      '@media(max-width:1080px){.cover-grid{align-items:start;}.cover-aside{align-self:auto;}}' +
+      '@media(max-width:1080px){.sh{width:min(100% - 56px,960px);}.cover-grid{align-items:start;}.cover-aside{align-self:auto;}}' +
       '@media(max-width:900px){#verdict .split{grid-template-columns:1fr 1fr;}#verdict .split>.shot{grid-column:1/-1;width:min(100%,520px);justify-self:center;}#verdict .split>.shot,#verdict .split>.col-card{height:auto;min-height:360px;}}' +
-      '@media(max-width:760px){.rec-carousel[data-grouped="true"]{grid-template-columns:1fr;}.rec-carousel[data-grouped="true"] .prio-tabs,.rec-carousel[data-grouped="true"] .carousel-bar{grid-column:1;}.rec-carousel[data-grouped="true"] .prio-tabs{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;}.rec-carousel[data-grouped="true"] .carousel-bar{grid-row:2;justify-content:flex-end;}.rec-carousel[data-grouped="true"] .carousel-track{grid-row:3;}#verdict .split{grid-template-columns:1fr;}#verdict .split>.shot{grid-column:auto;width:100%;}#verdict .split>.shot,#verdict .split>.col-card{min-height:0;}}' +
+      '@media(max-width:760px){body{font-size:14.5px;}.sh{width:min(100% - 32px,520px);}section{padding:58px 0;}.rec-carousel[data-grouped="true"]{grid-template-columns:1fr;}.rec-carousel[data-grouped="true"] .prio-tabs,.rec-carousel[data-grouped="true"] .carousel-bar{grid-column:1;}.rec-carousel[data-grouped="true"] .prio-tabs{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;}.rec-carousel[data-grouped="true"] .carousel-bar{grid-row:2;justify-content:flex-end;}.rec-carousel[data-grouped="true"] .carousel-track{grid-row:3;}#verdict .split{grid-template-columns:1fr;}#verdict .split>.shot{grid-column:auto;width:100%;}#verdict .split>.shot,#verdict .split>.col-card{min-height:0;}}' +
       '</style>';
     // Inject after <head> so the DOCTYPE stays first; prepending the script
     // would push the parser into quirks mode. DOMParser always emits a <head>
