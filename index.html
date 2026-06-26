@@ -158,17 +158,25 @@ document.addEventListener('DOMContentLoaded', async function() {
       JSON.stringify(resourceMap).split('</' + 'script>').join('<\\/' + 'script>') +
       ';</' + 'script>';
     const layoutOverrides = '<style id="navi-layout-overrides">' +
-      'body{font-size:15px;}' +
-      '.sh{width:min(1080px,calc(100% - 88px));}' +
-      'section{padding:72px 0;}' +
-      '.cover{padding:66px 0 58px;}' +
-      '.cover-grid{gap:40px;}' +
-      '.cover h1{font-size:clamp(36px,5vw,66px);}' +
-      '.verdict h2{font-size:clamp(28px,3.8vw,50px);}' +
-      '.sec-head h2{font-size:clamp(26px,3.1vw,40px);}' +
-      '.cover-aside{padding:26px 28px;border-radius:24px;}' +
-      '.info-card,.m-card{padding:24px;}' +
-      '.prob-card,.bug-card,.slide{font-size:.95em;}' +
+      'body{font-size:14px;line-height:1.48;}' +
+      '.sh{width:min(980px,calc(100% - 112px));}' +
+      'section{padding:60px 0;}' +
+      '.cover{padding:58px 0 50px;}' +
+      '.cover-grid{gap:34px;grid-template-columns:1.1fr .9fr;}' +
+      '.cover h1{font-size:clamp(32px,4.35vw,56px);line-height:1.02;margin-bottom:16px;}' +
+      '.lede{font-size:clamp(15px,1.25vw,17px);line-height:1.45;}' +
+      '.verdict h2{font-size:clamp(26px,3.25vw,42px);margin-bottom:14px;}' +
+      '.sec-head{margin-bottom:32px;}' +
+      '.sec-head h2{font-size:clamp(24px,2.65vw,34px);}' +
+      '.cover-aside{padding:22px 24px;border-radius:22px;}' +
+      '.cover-aside .big{font-size:21px;}' +
+      '.quote-card{padding:18px 20px;margin-bottom:22px;}' +
+      '.tag-row{margin-bottom:20px;}' +
+      '.pill{padding:6px 12px;font-size:11.5px;}' +
+      '.info-card,.m-card{padding:20px;}' +
+      '.prob-card,.bug-card,.slide{font-size:.9em;}' +
+      '.split{margin-top:28px;}' +
+      '.triad,.metric-split{gap:14px;}' +
       'body{background-image:radial-gradient(rgba(94,64,220,.18) 1.25px,transparent 1.25px);background-size:24px 24px;}' +
       '.cover{background-image:radial-gradient(rgba(94,64,220,.18) 1.25px,transparent 1.25px),linear-gradient(160deg,#e4dbff 0%,#ece7ff 42%,#efeaff 100%);background-size:24px 24px,auto;background-position:0 0,0 0;}' +
       '.cover-grid{align-items:center;}' +
@@ -185,22 +193,22 @@ document.addEventListener('DOMContentLoaded', async function() {
       '.rec-carousel[data-grouped="true"] .carousel-ctrl{margin-left:auto;}' +
       '.rec-carousel[data-grouped="true"] .carousel-track,.rec-carousel[data-grouped="true"] .carousel-dots,.rec-carousel[data-grouped="true"] .carousel-hint{grid-column:1/-1;}' +
       '#bugs .carousel-dots,#bugs .carousel-hint,#recs .carousel-dots,#recs .carousel-hint{display:none;}' +
-      '#verdict .split{grid-template-columns:.92fr 1fr 1.08fr;gap:18px;align-items:start;}' +
+      '#verdict .split{grid-template-columns:.88fr 1fr 1.05fr;gap:16px;align-items:start;}' +
       '#verdict .split>.shot{margin:0;}' +
-      '#verdict .split>.shot,#verdict .split>.col-card{height:420px;min-height:0;}' +
-      '#verdict .split>.shot img{height:250px!important;min-height:0!important;flex:none!important;object-fit:cover;object-position:center 22%;}' +
-      '#verdict .split>.shot figcaption{padding:16px 18px;font-size:13px;line-height:1.45;}' +
-      '#verdict .col-card{padding:20px 22px;}' +
-      '#verdict .col-card h4{margin-bottom:12px;}' +
-      '#verdict .col-card ul.ticks{gap:9px;}' +
-      '#verdict .col-card ul.ticks li{font-size:13px;line-height:1.42;}' +
+      '#verdict .split>.shot,#verdict .split>.col-card{height:370px;min-height:0;}' +
+      '#verdict .split>.shot img{height:218px!important;min-height:0!important;flex:none!important;object-fit:cover;object-position:center 22%;}' +
+      '#verdict .split>.shot figcaption{padding:13px 15px;font-size:11.8px;line-height:1.38;}' +
+      '#verdict .col-card{padding:17px 19px;}' +
+      '#verdict .col-card h4{margin-bottom:10px;}' +
+      '#verdict .col-card ul.ticks{gap:7px;}' +
+      '#verdict .col-card ul.ticks li{font-size:11.8px;line-height:1.36;}' +
       '#verdict .col-signal{padding-top:10px;gap:6px;}' +
       '#problems .prob-block:nth-of-type(2) .prob-inner>div:last-child{align-self:center!important;margin-top:0;}' +
       '#problems .prob-block:nth-of-type(2) .prob-inner>div:last-child>img{width:100%!important;height:88px!important;max-height:none!important;object-fit:cover!important;object-position:center 2%!important;margin-bottom:12px!important;border-radius:10px;display:block;}' +
       '#problems .prob-block:nth-of-type(2) .moat-vs{margin-top:52px;}' +
-      '@media(max-width:1080px){.sh{width:min(100% - 56px,960px);}.cover-grid{align-items:start;}.cover-aside{align-self:auto;}}' +
+      '@media(max-width:1080px){.sh{width:min(100% - 64px,920px);}.cover-grid{align-items:start;}.cover-aside{align-self:auto;}}' +
       '@media(max-width:900px){#verdict .split{grid-template-columns:1fr 1fr;}#verdict .split>.shot{grid-column:1/-1;width:min(100%,520px);justify-self:center;}#verdict .split>.shot,#verdict .split>.col-card{height:auto;min-height:360px;}}' +
-      '@media(max-width:760px){body{font-size:14.5px;}.sh{width:min(100% - 32px,520px);}section{padding:58px 0;}.rec-carousel[data-grouped="true"]{grid-template-columns:1fr;}.rec-carousel[data-grouped="true"] .prio-tabs,.rec-carousel[data-grouped="true"] .carousel-bar{grid-column:1;}.rec-carousel[data-grouped="true"] .prio-tabs{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;}.rec-carousel[data-grouped="true"] .carousel-bar{grid-row:2;justify-content:flex-end;}.rec-carousel[data-grouped="true"] .carousel-track{grid-row:3;}#verdict .split{grid-template-columns:1fr;}#verdict .split>.shot{grid-column:auto;width:100%;}#verdict .split>.shot,#verdict .split>.col-card{min-height:0;}}' +
+      '@media(max-width:760px){body{font-size:14px;}.sh{width:min(100% - 32px,520px);}section{padding:52px 0;}.cover h1{font-size:clamp(31px,9vw,42px);}.rec-carousel[data-grouped="true"]{grid-template-columns:1fr;}.rec-carousel[data-grouped="true"] .prio-tabs,.rec-carousel[data-grouped="true"] .carousel-bar{grid-column:1;}.rec-carousel[data-grouped="true"] .prio-tabs{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;}.rec-carousel[data-grouped="true"] .carousel-bar{grid-row:2;justify-content:flex-end;}.rec-carousel[data-grouped="true"] .carousel-track{grid-row:3;}#verdict .split{grid-template-columns:1fr;}#verdict .split>.shot{grid-column:auto;width:100%;}#verdict .split>.shot,#verdict .split>.col-card{min-height:0;}}' +
       '</style>';
     // Inject after <head> so the DOCTYPE stays first; prepending the script
     // would push the parser into quirks mode. DOMParser always emits a <head>
